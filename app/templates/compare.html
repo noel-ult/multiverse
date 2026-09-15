@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Compare - Multiverse{% endblock %}
+{% block content %}
+<section class="page">
+    <div class="page__header">
+        <h1 class="page__title">COMPARE UNIVERSES</h1>
+        <p class="page__desc">See how different decisions changed the outcome.</p>
+    </div>
+
+    <div class="compare-layout">
+        <div class="compare-card glass">
+            <div class="compare-card__header compare-card__header--a">
+                <h3 class="compare-card__name">{{ universe_a.name }}</h3>
+                <span class="meta-chip">ID #{{ universe_a.id }}</span>
+            </div>
+            <div class="compare-card__metrics">
+                <span class="compare-metric">
+                    <span class="compare-metric__value">{{ score_a }}</span>
+                    <span class="compare-metric__label">REALITY SCORE</span>
+                </span>
+                <span class="compare-metric">
+                    <span class="compare-metric__value">{{ status_a }}</span>
+                    <span class="compare-metric__label">REALITY STATUS</span>
+                </span>
+            </div>
+            <div class="compare-stats">
+                {% for key in ['money', 'energy', 'knowledge', 'career', 'relationships'] %}
+                <div class="compare-stat {% if state_a[key] > state_b[key] %}compare-stat--better{% elif state_a[key] < state_b[key] %}compare-stat--worse{% endif %}">
+                    <span class="compare-stat__label">{{ key | upper }}</span>
+                    <div class="compare-stat__values">
+                        <span class="compare-stat__a">{% if key == 'money' %}&#x20B9;{% endif %}{{ state_a[key] }}</span>
+                        <span class="compare-stat__vs">vs</span>
+                        <span class="compare-stat__b">{% if key == 'money' %}&#x20B9;{% endif %}{{ state_b[key] }}</span>
+                    </div>
+                    {% if state_a[key] != state_b[key] %}
+                    <div class="compare-stat__diff">
+                        {% set diff = state_a[key] - state_b[key] %}
+                        <span class="{% if diff > 0 %}diff--positive{% else %}diff--negative{% endif %}">
+                            {% if diff > 0 %}+{% endif %}{{ diff }}
+                        </span>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% if last_event_a %}
+            <div class="compare-meta">
+                <span class="meta-chip">Last: {{ last_event_a.description }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="compare-vs">
+            <span class="compare-vs__text">VS</span>
+        </div>
+
+        <div class="compare-card glass">
+            <div class="compare-card__header compare-card__header--b">
+                <h3 class="compare-card__name">{{ universe_b.name }}</h3>
+                <span class="meta-chip">ID #{{ universe_b.id }}</span>
+            </div>
+            <div class="compare-card__metrics">
+                <span class="compare-metric">
+                    <span class="compare-metric__value">{{ score_b }}</span>
+                    <span class="compare-metric__label">REALITY SCORE</span>
+                </span>
+                <span class="compare-metric">
+                    <span class="compare-metric__value">{{ status_b }}</span>
+                    <span class="compare-metric__label">REALITY STATUS</span>
+                </span>
+            </div>
+            <div class="compare-stats">
+                {% for key in ['money', 'energy', 'knowledge', 'career', 'relationships'] %}
+                <div class="compare-stat {% if state_b[key] > state_a[key] %}compare-stat--better{% elif state_b[key] < state_a[key] %}compare-stat--worse{% endif %}">
+                    <span class="compare-stat__label">{{ key | upper }}</span>
+                    <div class="compare-stat__values">
+                        <span class="compare-stat__a">{% if key == 'money' %}&#x20B9;{% endif %}{{ state_b[key] }}</span>
+                        <span class="compare-stat__vs">vs</span>
+                        <span class="compare-stat__b">{% if key == 'money' %}&#x20B9;{% endif %}{{ state_a[key] }}</span>
+                    </div>
+                    {% if state_b[key] != state_a[key] %}
+                    <div class="compare-stat__diff">
+                        {% set diff = state_b[key] - state_a[key] %}
+                        <span class="{% if diff > 0 %}diff--positive{% else %}diff--negative{% endif %}">
+                            {% if diff > 0 %}+{% endif %}{{ diff }}
+                        </span>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% if last_event_b %}
+            <div class="compare-meta">
+                <span class="meta-chip">Last: {{ last_event_b.description }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="compare-summary glass">
+        <h3 class="panel__title">SUMMARY</h3>
+        <p class="compare-summary__text">{{ summary }}</p>
+    </div>
+
+    <div class="compare-actions">
+        <a href="/universe/{{ universe_a.id }}" class="btn btn--ghost">VIEW {{ universe_a.name }}</a>
+        <a href="/universe/{{ universe_b.id }}" class="btn btn--ghost">VIEW {{ universe_b.name }}</a>
+    </div>
+</section>
+{% endblock %}

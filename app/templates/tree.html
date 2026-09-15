@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Tree - Multiverse{% endblock %}
+{% block content %}
+<section class="page page--full">
+    <div class="tree-header">
+        <h1 class="tree-header__title">MULTIVERSE TREE</h1>
+        <p class="tree-header__tagline">Navigate every possible future in dimensional space.</p>
+    </div>
+    <div class="tree-layout">
+        <div class="tree-container glass">
+            <div class="tree-toolbar">
+                <div><p class="tree-kicker">LIVE TOPOLOGY</p><h3 class="panel__title">UNIVERSE TREE</h3></div>
+                <div class="tree-toolbar__actions">
+                    <button class="btn btn--ghost btn--sm" id="zoomIn" aria-label="Zoom in">+</button>
+                    <button class="btn btn--ghost btn--sm" id="zoomOut" aria-label="Zoom out">&minus;</button>
+                    <button class="btn btn--ghost btn--sm" id="fitTree">FIT TREE</button>
+                    <button class="btn btn--ghost btn--sm" id="resetView">RESET VIEW</button>
+                    <button class="btn btn--ghost btn--sm" id="toggleDepth" aria-pressed="true">3D DEPTH: ON</button>
+                </div>
+            </div>
+            <div class="tree-hint" id="treeChainHint" hidden>
+                This timeline currently follows a single path. Return to an earlier reality to create alternate branches.
+            </div>
+            <div class="tree-viewport" id="treeViewport">
+                <div class="tree-hud" aria-hidden="true"><span>◉ LIVE MAP</span><span id="treeDepthReadout">DEPTH / ACTIVE</span></div>
+                <div class="tree-grid" aria-hidden="true"></div>
+                <svg id="treeSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+        </div>
+        <aside class="tree-sidebar glass" id="treeSidebar">
+            <label class="tree-search-label" for="treeSearch">FIND A REALITY</label>
+            <input id="treeSearch" class="tree-search" type="search" placeholder="Search timeline..." autocomplete="off">
+            <div class="tree-explorer" id="treeExplorer" role="list" aria-label="Reality explorer"></div>
+            <div class="tree-sidebar__empty" id="treeSidebarEmpty">
+                <p>Select a node to view details.</p>
+            </div>
+            <div class="tree-sidebar__content" id="treeSidebarContent" style="display:none;">
+                <h3 class="panel__title">SELECTED REALITY</h3>
+                <div class="sidebar-info">
+                    <div class="sidebar-info__row">
+                        <span class="sidebar-info__label">Name</span>
+                        <span class="sidebar-info__value" id="sidebarName"></span>
+                    </div>
+                    <div class="sidebar-info__row">
+                        <span class="sidebar-info__label">Parent</span>
+                        <span class="sidebar-info__value" id="sidebarParent"></span>
+                    </div>
+                    <div class="sidebar-info__row">
+                        <span class="sidebar-info__label">Decision</span>
+                        <span class="sidebar-info__value" id="sidebarDecision">-</span>
+                    </div>
+                    <div class="sidebar-info__row">
+                        <span class="sidebar-info__label">Created</span>
+                        <span class="sidebar-info__value" id="sidebarCreated">-</span>
+                    </div>
+                    <div class="sidebar-info__row">
+                        <span class="sidebar-info__label">Reality Score</span>
+                        <span class="sidebar-info__value" id="sidebarScore">-</span>
+                    </div>
+                </div>
+                <h3 class="panel__title" style="margin-top:1rem;">STATE</h3>
+                <div id="sidebarDetails"></div>
+                <div class="sidebar-actions">
+                    <a href="#" class="btn btn--primary btn--sm btn--full" id="sidebarOpen">OPEN REALITY</a>
+                    <a href="#" class="btn btn--ghost btn--sm btn--full" id="sidebarParentLink">VIEW PARENT</a>
+                    <a href="#" class="btn btn--accent btn--sm btn--full" id="sidebarBranch">BRANCH FROM HERE</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>window.__universeId = {{ universe.id }};</script>
+<script src="{{ url_for('static', filename='js/tree.js') }}"></script>
+{% endblock %}
