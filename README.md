@@ -1,5 +1,10 @@
 # Multiverse
 
+<!-- documentation-navigation -->
+[Developer guide](docs/PROJECT_GUIDE.md) · [Source reference](docs/REFERENCE.md) · [Contributing](CONTRIBUTING.md)
+<!-- /documentation-navigation -->
+
+
 Multiverse is an interactive alternate-reality simulator. Each decision creates a child reality with its own state, consequences, milestones, timeline, and place in a navigable SVG tree.
 
 > Status: actively developed locally. AWS infrastructure is intentionally not deployed yet.
