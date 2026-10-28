@@ -1,7 +1,6 @@
 # multiverse source reference
 
-
-Source reviewed: [`70e4adc62ee4`](https://github.com/noel-ult/multiverse/commit/70e4adc62ee413edc04009eab381c7e4aa4a3caf).
+Source reviewed: [`91710218b4b3`](https://github.com/noel-ult/multiverse/commit/91710218b4b3dcd8a915a1466816b1e07b84882f).
 
 This reference records the checked-in source, scripts, configuration names, and route declarations. It is a navigation aid; service availability and successful test execution require separate verification.
 
@@ -42,8 +41,11 @@ Paths are **as declared in each source file**. Router/blueprint mount prefixes f
 
 Historical plans/reports describe their own revision; use current source when they disagree.
 
+- [CONTRIBUTING.md](../CONTRIBUTING.md)
 - [DEPLOYMENT.md](../DEPLOYMENT.md)
 - [README.md](../README.md)
+- [docs/PROJECT_GUIDE.md](../docs/PROJECT_GUIDE.md)
+- [docs/REFERENCE.md](../docs/REFERENCE.md)
 - [requirements.txt](../requirements.txt)
 
 ## Source and configuration map
