@@ -59,3 +59,7 @@ Run `.venv/bin/python reset_demo.py` and explicitly enter `y`. It refuses non-SQ
 Browser → EC2 → Nginx → Gunicorn → Flask → Amazon RDS MySQL
 
 This repository is ready for that deployment stage, but no EC2, RDS, Nginx, HTTPS, domain, or AWS resource is provisioned by this project.
+
+<!-- developer-handbook-20261028 -->
+[Developer guide](docs/PROJECT_GUIDE.md) · [Source reference](docs/REFERENCE.md) · [Verification and operations](docs/OPERATIONS.md)
+<!-- /developer-handbook-20261028 -->
